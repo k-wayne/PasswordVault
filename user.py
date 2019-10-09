@@ -43,6 +43,7 @@ class User:
         #pascode is mutated to create an uppercase,lowercase,string and symbols characters
         characters = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation
 
-        
+        #to generate the passcode of length
+        passlength = random.randint(8, 16)
         
 
