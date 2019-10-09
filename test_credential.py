@@ -26,3 +26,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_credential.app_name, "MySpace")
         self.assertEqual(self.new_credential.account_name, "Ghostke99")
         self.assertEqual(self.new_credential.account_password, "daimaMkenya001")
+
+
+if __name__ == '__main__':
+    unittest.main()
