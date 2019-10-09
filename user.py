@@ -45,5 +45,9 @@ class User:
 
         #to generate the passcode of length
         passlength = random.randint(8, 16)
+
+        #this mixes up the characters randomly to create non-pattern passcode
+        pass_word = ''.join(secrets.choice(characters)
+                            for x in range(passlength))
         
 
