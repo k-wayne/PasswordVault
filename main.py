@@ -51,23 +51,23 @@ def search_name(credentials):
 ##check if credential exists
 
 
-def credential_exist(appname):
-    return Credentials.credential_exist(appname)
+def search_duplicate(appname):
+    return Credentials.search_duplicate(appname)
 ###displaying all credentials
 
 
-def display_allcredentials():
-    return Credentials.display_allcredentials()
+def credentials_show():
+    return Credentials.credentials_show()
 
 ##Calling the All Functions!!
 
 
 def main():
-    print("Hello! Welcome to the PasswordLocker application.\n To proceed,Use these short codes: \n ca - create an account using your own password \n ra - create an account using a randomly generated  password \n ex - exit the application")
+    print("Hello! This is PasswordVault bot application.\n Use these short codes: \n new - create an account using your own password \n ran - create an account using a randomly generated  password \n esc - exit the application")
     short_code = input().lower()
     while True:
 
-        if short_code == 'ca':
+        if short_code == 'new':
             print("Create an account using your own password")
             print("-"*10)
 
