@@ -23,7 +23,7 @@ class User:
         self.password = password 
     
     def user_create(self):
-        User.user_list.append(cls):
+        User.user_list.append(self)
     
     @classmethod
     def user_show(cls):
