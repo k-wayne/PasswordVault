@@ -38,4 +38,11 @@ class User:
         #this method auto-generates a passcode for the user following
             guidelines on character randomization where uppercase,lowercase,
                 symbols are used to get a EIGHT character passcode.
+
         """
+        #pascode is mutated to create an uppercase,lowercase,string and symbols characters
+        characters = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation
+
+        
+        
+
