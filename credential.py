@@ -27,6 +27,7 @@ class Credentials:
 
     def credential_remove(self):
         #remove credential from credentials_list
+         Credentials.credentials_list.remove(self)
 
     @classmethod
     def search_name(cls, name):
@@ -56,7 +57,7 @@ class Credentials:
         #display list of creditials
 
         '''
-        return cls.credential_list
+        return cls.credentials_list
 
     @classmethod
     def copycat(cls, appname):
@@ -64,6 +65,7 @@ class Credentials:
         #method to allow copying of the credentials by user
 
         """
-        #pyperclip module allows copy pasting 
+        #pyperclip module allows copy pasting
         credential_found = Credentials.find_credentialbyappname(appname)
         pyperclip.copy(credential_found.account_password)
+        
