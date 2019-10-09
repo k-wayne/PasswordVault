@@ -31,3 +31,5 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_user.password, "lovepy")
     
      
+if __name__ == '__main__':
+    unittest.main()
