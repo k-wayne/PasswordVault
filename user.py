@@ -32,3 +32,10 @@ class User:
     
         """
         return cls.user_list
+    
+    def passcode_generate():
+        """
+        #this method auto-generates a passcode for the user following
+            guidelines on character randomization where uppercase,lowercase,
+                symbols are used to get a EIGHT character passcode.
+        """
