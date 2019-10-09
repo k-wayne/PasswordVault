@@ -1,7 +1,7 @@
 import string
 import random
-import secrets
 import pyperclip
+import secrets
 
 class User:
     """
