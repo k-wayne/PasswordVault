@@ -44,4 +44,7 @@ As a user I would like:
 * IDE
 
 ## License
-MIT &copy;2017 [k-wayne] <https://github.com/k-wayne/PasswordVault>
+Licensed under the [MIT License](LICENSE)
+
+[k-wayne]
+2019  <https://github.com/k-wayne/PasswordVault>
