@@ -66,6 +66,6 @@ class Credentials:
 
         """
         #pyperclip module allows copy pasting
-        credential_found = Credentials.find_credentialbyappname(appname)
-        pyperclip.copy(credential_found.account_password)
+        credentials_copy = Credentials.search_name(cls)
+        pyperclip.copy(credentials_copy.account_password)
         
