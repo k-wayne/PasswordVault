@@ -2,133 +2,120 @@
 from user import User
 from credential import Credentials
 
-
-####USER
-
-##creating a user
+#USER MODULE
+#create user
 def create_user(fname, lname, uname, phone, email, passw):
     new_user = User(fname, lname, uname, phone, email, passw)
     return new_user
-##save users
 
+#saving users
+def user_create(user):
+    user.user_create()
 
-def save_user(user):
-    user.save_user()
-#displaying all users
+#show users
+def user_show():
+    return User.user_show()
 
-
-def user_create():
-    return User.user_create()
-#generate a random password
-
-
+#passcode generator
 def passcode_generate():
     return User.passcode_generate()
 
-######CREDENTIALS
+#CREDENTIALS MODULE
 
-##creating a new credential
-
-
+#create credential new
 def create_credential(apname, acname, psname):
     new_credential = Credentials(apname, acname, psname)
     return new_credential
-##save credential
 
-
+##saving credentials
 def credential_create(credentials):
     credentials.credential_create()
-##delete a credential
 
+#remove a credential
+def credential_remove(credentials):
+    credentials.credential_remove()
 
-def credential_removesearch_name(credentials):
-    credentials.credential_removesearch_name()
-##finding a password using appname
-
-
+#search for App
 def search_name(credentials):
     return Credentials.search_name(credentials)
-##check if credential exists
 
-
+#Duplicate search
 def search_duplicate(appname):
     return Credentials.search_duplicate(appname)
-###displaying all credentials
 
-
+#show credentials
 def credentials_show():
     return Credentials.credentials_show()
 
-##Calling the All Functions!!
-
-
+#Main App
 def main():
     print("Hello! This is PasswordVault bot application.\n Use these short codes: \n new - create an account using your own password \n ran - create an account using a randomly generated  password \n esc - exit the application")
     short_code = input().lower()
     while True:
 
         if short_code == 'new':
-            print("Create an account using your own password")
-            print("-"*10)
+            print("Use your own passcode to generate your account")
+            print("."*60)
 
-            print("First Name ")
+            print("First Name "+" "*5 +"_"*30)
             f_name = input()
 
-            print("Last Name ")
+            print("Last Name "+" "*5 + "_"*30)
             l_name = input()
 
-            print("User Name ")
+            print("User Name " + " "*5 + "_"*30)
             u_name = input()
 
-            print("Phone Number ")
+            print("Phone Number " + " "*5 + "_"*30)
             p_number = input()
 
-            print("Email ")
+            print("Email " + " "*5 + "_"*30)
             e_address = input()
 
-            print("Password ")
+            print("Password " + " "*5 + "_"*30)
             p_word = input()
 
-            ##create and save a new account
-            save_user(create_user(f_name, l_name, u_name,
+            #def to save acc
+            user_create(create_user(f_name, l_name, u_name,
                                   p_number, e_address, p_word))
             print('\n')
-            print(f"New Account {u_name} successfully created!")
+            print(f"{u_name} account has been successfully created!")
             print('\n')
             print(
-                "To proceed use the short code: \n lg - login into account \n ex - to exit the application")
+                "Use shortcodes to continue: \n log - login into account \n esc - to exit")
             short_codetwo = input().lower()
-            if short_codetwo == 'lg':
+            if short_codetwo == 'log':
                 print("-"*10)
                 print("LogIn")
                 print("-"*10)
-                print("To log in, input your username and password")
+                print("Input your Username then input Passcode")
 
-                print("UserName")
+                print("Username")
                 user_namein = input()
 
-                print("Password")
+                print("Passcode")
                 pass_wordin = input()
-                ###verifying the username and password
+
+                #validation of acc
                 if user_namein == u_name and pass_wordin == p_word:
-                    print("Correct username and password.\n To proceed use the following shortcodes: \n cc - create a new credential \n dc - display credentials \n fc - find a credential by inputing the appname \n rc - to delete a credential \n ex - exit the application")
+                    print("Success!!. \n Use shortcodes to continue: \n new - create a new credential \n show - display your credentials \n find - to find a credential by inputing the name \n del - to delete a credential \n esc - exit the application")
                     short_codethree = input().lower()
-                    if short_codethree == 'cc':
+                    if short_codethree == 'new':
                         print("-"*10)
-                        print("To create a new Credential,Input the following.")
+                        print("Create new credentials.")
                         print("-"*10)
 
-                        print("Application Name")
+                        print("App Name")
                         appli_name = input()
 
                         print("Account Name")
                         acc_name = input()
 
-                        print("Password")
+                        print("Passcode")
                         pass_name = input()
-                        ###create and save a new credential
-                        save_newcredential(create_credential(
-                            appli_name, acc_name, pass_name))
+
+                        #def new credential
+                        credential_create(create_credential(appli_name, acc_name, pass_name))
                         print('\n')
                         print("-"*10)
                         print(f"New Credential for {appli_name} created.")
@@ -136,12 +123,12 @@ def main():
                         print("-"*10)
                         continue
 
-                    elif short_codethree == 'dc':
-                        if display_allcredentials():
-                            print("Here is a list of all your contacts")
+                    elif short_codethree == 'show':
+                        if credentials_show():
+                            print("The list of all your contacts below:")
                             print('\n')
 
-                            for credentials in display_allcredentials():
+                            for credentials in credentials_show():
                                 print(
                                     f"{credentials.appli_name} {credentials.acc_name} {credentials.pass_name}")
                                 print('\n')
@@ -150,73 +137,77 @@ def main():
                             print(
                                 "You do not seem to have any credentials saved yet.")
                             print('\n')
-                    elif short_codethree == 'fc':
+                    elif short_codethree == 'find':
                         print(
-                            "Enter the application name for the credential you want to search for.")
+                            "Enter the App Name you are looking for.")
 
                         search_applicationname = input()
-                        if credential_exist(search_applicationname):
-                            search_credential = find_credentialbyappname(
+                        if search_duplicate(search_applicationname):
+                            search_credential = search_name(
                                 search_applicationname)
                             print(
                                 f"{search_applicationname.appli_name} {search_applicationname.acc_name} {search_applicationname.pass_name}")
                         else:
-                            print("That credential doesnot exist.")
+                            print("Oops fatal error: non-existant.")
                 else:
-                    print("Wrong username or password.Please try again.")
+                    print("Try again.")
 
-            elif short_codetwo == 'ex':
-                print("Bye Bye!")
+            elif short_codetwo == 'esc':
+                print("Come back soon")
                 break
             else:
-                print("I really didn't get that.Please use the short codes")
+                print("Try again"+"."*10)
 
-        elif short_code == 'ra':
-            print("Create an account using a randomly generated password")
+        elif short_code == 'ran':
+            print("To create an account with random password")
             print("-"*10)
 
-            print("First Name ")
+            print("First Name " + " "*5 + "_"*30)
             f_name = input()
 
-            print("Last Name ")
+            print("Last Name " + " "*5 + "_"*30)
             l_name = input()
 
-            print("User Name ")
+            print("User Name " + " "*5 + "_"*30)
             u_name = input()
 
-            print("Phone Number ")
+            print("Phone Number " + " "*5 + "_"*30)
             p_number = input()
 
-            print("Email ")
+            print("Email " + " "*5 + "_"*30)
             e_address = input()
 
-            ##create and save a new account
-            save_user(create_user(f_name, l_name, u_name,
-                                  p_number, e_address, p_word))
+            print("Password " + " "*5 + "_"*30)
+            p_word = input()
+            
+
+            #def save acc
+            user_create(create_user(f_name, l_name, u_name,p_number, e_address, p_word))
             print('\n')
-            print(f"New Account {u_name} successfully created!")
+            print(f"{u_name} has been created!")
             print('\n')
             print(
-                "To proceed use the short code: \n lg - login into account \n ex - to exit the application")
+                "Use the shortcodes to navigate: \n log - login into account \n esc - to exit the application")
             short_codetwo = input().lower()
-            if short_codetwo == 'lg':
+            if short_codetwo == 'log':
                 print("-"*10)
                 print("LogIn")
                 print("-"*10)
-                print("To log in, input your username and password")
+                print("Enter your Username and Passcode")
 
                 print("UserName")
                 user_namein = input()
 
-                print("Password")
+                print("Passcode")
                 pass_wordin = input()
-                ###verifying the username and password
+
+                #validate acc
                 if user_namein == u_name and pass_wordin == p_word:
-                    print("Correct username and password.\n To proceed use the following shortcodes: \n cc - create a new credential \n dc - display credentials \n fc - find a credential by inputing the appname \n rc - to delete a credential \n ex - exit the application")
+                    print("Correct username and password.\n To proceed use the following shortcodes: \n new - To generate a new credential \n show - To show credentials \n find - to Search a credential by inputing the App name \n del - To remove a credential \n esc - To exit the application")
                     short_codethree = input().lower()
-                    if short_codethree == 'cc':
+                    if short_codethree == 'new':
                         print("-"*10)
-                        print("To create a new Credential,Input the following.")
+                        print("Follow instructions.")
                         print("-"*10)
 
                         print("Application Name")
@@ -225,11 +216,11 @@ def main():
                         print("Account Name")
                         acc_name = input()
 
-                        print("Password")
+                        print("Passcode")
                         pass_name = input()
-                        ###create and save a new credential
-                        save_newcredential(create_credential(
-                            appli_name, acc_name, pass_name))
+
+                        #create credentials
+                        credential_create(create_credential(appli_name, acc_name, pass_name))
                         print('\n')
                         print("-"*10)
                         print(f"New Credential for {appli_name} created.")
@@ -237,46 +228,46 @@ def main():
                         print("-"*10)
                         continue
 
-                    elif short_codethree == 'dc':
-                        if display_allcredentials():
-                            print("Here is a list of all your contacts")
+                    elif short_codethree == 'show':
+                        if credentials_show():
+                            print("Showing lists of contacts....")
                             print('\n')
 
-                            for credentials in display_allcredentials():
+                            for credentials in credentials_show():
                                 print(
                                     f"{credentials.appli_name} {credentials.acc_name} {credentials.pass_name}")
                                 print('\n')
                         else:
                             print('\n')
                             print(
-                                "You do not seem to have any credentials saved yet.")
+                                "Non-existant credentials.")
                             print('\n')
-                    elif short_codethree == 'fc':
+                    elif short_codethree == 'find':
                         print(
-                            "Enter the application name for the credential you want to search for.")
+                            "Type in App name.")
 
                         search_applicationname = input()
-                        if credential_exist(search_applicationname):
-                            search_credential = find_credentialbyappname(
+                        if search_duplicate(search_applicationname):
+                            search_credential = search_name(
                                 search_applicationname)
                             print(
                                 f"{search_applicationname.appli_name} {search_applicationname.acc_name} {search_applicationname.pass_name}")
                         else:
                             print("That credential doesnot exist.")
                 else:
-                    print("Wrong username or password.Please try again.")
+                    print("Fatal error. Try Again.")
 
-            elif short_codetwo == 'ex':
-                print("Bye Bye!")
+            elif short_codetwo == 'esc':
+                print("Come back soon!")
                 break
             else:
-                print("I really didn't get that.Please use the short codes")
+                print("Make  use of the shortcodes")
 
-        elif short_code == "ex":
-            print("Bye Bye!")
+        elif short_code == "esc":
+            print("Come back soon!")
             break
         else:
-            print("I really didn't get that.Please use the short codes")
+            print("Make  use of the shortcodes")
 
 
 if __name__ == '__main__':
