@@ -50,7 +50,7 @@ class User:
         """
         #the imported secrets module allows more cryptic passcode generation
         """
-        pass_word = ''.join(secrets.choice(characters)
+        pass_code = ''.join(secrets.choice(characters)
                             for x in range(passlength))
         
 
