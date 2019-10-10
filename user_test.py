@@ -32,7 +32,8 @@ class TestUser(unittest.TestCase):
      
     def test_user_create(self):
         """ 
-        #determine is the user list is populated and details saved
+        
+        #determine is the credential list is populated and details saved
         
         """
         self.new_user.user_create()
